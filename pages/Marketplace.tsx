@@ -131,43 +131,43 @@ function MarketPlace() {
             const provider = new ethers.BrowserProvider((window as any).ethereum);
           const network = await provider.getNetwork();
 
-            if(network.chainId !== BigInt(11155111)){
-                try{
-                    await (window as any).ethereum.request(
-                        {
-                            method: 'wallet_switchEthereumChain',
-                            params: [{ chainId: '0xaa36a7' }],
-                        }
-                    );
-                } catch(switchError: any) {
-                    if (switchError.code === 4902) {
-                        try {
-                          await (window as any).ethereum.request({
-                            method: 'wallet_addEthereumChain',
-                            params: [
-                              {
-                                chainId: '0xaa36a7',
-                                chainName: 'Sepolia',
-                                rpcUrls: ['https://sepolia.infura.io/v3/b68f079cfd2445858ffb7ca65022a551'], // Add your RPC URL for Sepolia
-                                nativeCurrency: {
-                                  name: 'SepoliaETH',
-                                  symbol: 'SepoliaETH',
-                                  decimals: 18,
-                                },
-                                blockExplorerUrls: ['https://sepolia.etherscan.io'],
-                              },
-                            ],
-                          });
-                        } catch (addError) {
-                          console.error('Failed to add network:', addError);
-                          return;
-                        }
-                      } else {
-                        console.error('Failed to switch network:', switchError);
-                        return;
-                      }
-                }
-            }
+            // if(network.chainId !== BigInt(11155111)){
+            //     try{
+            //         await (window as any).ethereum.request(
+            //             {
+            //                 method: 'wallet_switchEthereumChain',
+            //                 params: [{ chainId: '0xaa36a7' }],
+            //             }
+            //         );
+            //     } catch(switchError: any) {
+            //         if (switchError.code === 4902) {
+            //             try {
+            //               await (window as any).ethereum.request({
+            //                 method: 'wallet_addEthereumChain',
+            //                 params: [
+            //                   {
+            //                     chainId: '0xaa36a7',
+            //                     chainName: 'Sepolia',
+            //                     rpcUrls: ['https://sepolia.infura.io/v3/b68f079cfd2445858ffb7ca65022a551'], // Add your RPC URL for Sepolia
+            //                     nativeCurrency: {
+            //                       name: 'SepoliaETH',
+            //                       symbol: 'SepoliaETH',
+            //                       decimals: 18,
+            //                     },
+            //                     blockExplorerUrls: ['https://sepolia.etherscan.io'],
+            //                   },
+            //                 ],
+            //               });
+            //             } catch (addError) {
+            //               console.error('Failed to add network:', addError);
+            //               return;
+            //             }
+            //           } else {
+            //             console.error('Failed to switch network:', switchError);
+            //             return;
+            //           }
+            //     }
+            // }
 
             const updatedNetwork = await provider.getNetwork();
             console.log(updatedNetwork.name);

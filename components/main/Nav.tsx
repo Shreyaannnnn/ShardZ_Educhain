@@ -51,7 +51,20 @@ function Nav(){
               setIsConnected(true);
               setAccountAddress(accounts[0]); 
               // console.log(accountAddress);
-              // console.log(accounts[0]);
+              // console.log(accounts[0]);   
+
+              const network = await provider.getNetwork();
+
+
+              if(network.chainId !== BigInt(656476)){
+
+              await (window as any).ethereum.request(
+                {
+                    method: 'wallet_switchEthereumChain',
+                    params: [{ chainId: '0xa045c' }],
+                }
+            );
+          }
               
               
               
